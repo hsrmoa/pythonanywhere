@@ -45,7 +45,7 @@ DEBUG = False
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
 
-ALLOWED_HOSTS = [".pythonanywhere.com","*"]
+ALLOWED_HOSTS = [".pythonanywhere.com"]
 
 
 # Application definition
