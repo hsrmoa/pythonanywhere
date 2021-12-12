@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">  
+    <fieldset>            
+        <form method ="POST">
+            {% csrf_token %}
+            <legend>회원가입</legend>
+            <div class="form-group">
+                <label for="userId" class="form-label mt-4">ID</label>                
+                {{form.userId}} 
+            </div>
+            <div class="form-group">
+                <label for="userEmail" class="form-label mt-4">이메일</label>                
+                {{form.userEmail}}                
+            </div>
+            <div class="form-group">
+                <label for="userPwd" class="form-label mt-4">비밀번호</label>                
+                {{form.userPwd}}                
+            </div>
+            <div class="form-group">
+                <label for="userPwd1" class="form-label mt-4">비밀번호 확인</label>                
+                {{form.userPwd1}}                
+            </div>            
+            {{ msg }}
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-lg btn-primary mt-4">회원가입</button>
+            </div>
+        </form>   
+    </fieldset>
+</div>
+{% endblock %}

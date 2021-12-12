@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5 pb-5 text-gray">
+    <div class="row justify-content-center">
+        <fieldset>            
+            {% if isLogin or user.is_authenticated %}
+                <legend class="text-center">Hello {{ user.user_id }}</legend>            
+            {% else %}
+                <legend class="text-center">타임라인</legend>            
+            {% endif %}
+        </fieldset>
+        {% for p in cardResult.list %}        
+        <div class="card border-primary me-md-3 mb-3 mt-3 float-start" style="max-width: 30rem;">
+            <img src="{{p.imageUrl}}" class="card-img-top">
+            <div class="card-body">
+                <p class="card-text">{{p.contents}}</p>
+                <p class="card-text">
+                    {% for tab in cardResult.tagList %}                                        
+                        {% if p == tab.portId %}
+                            {{ tab.tagNm }}
+                        {% endif %}
+                    {% endfor %}
+                </p>
+                <p class="card-text">{{p.createDt}}</p>                
+                <a href="{% url 'post' pk=p.id %}" class="btn btn-primary">상세페이지 이동</a>
+            </div>
+        </div>        
+        {% endfor %}        
+        <div class="mt-5">            
+            <ul class="pagination pagination-sm justify-content-center">                
+                {% if cardResult.list.has_previous%}
+                    <li class="page-item">                    
+                        <a class="page-link" href="?pIndex={{cardResult.list.previous_page_number}}">&laquo;</a>
+                    </li>
+                {% endif %}                                
+                <li class="page-item active">
+                    <a class="page-link" href="?pIndex={{cardResult.list.number|add:1}}">{{cardResult.list.number}} / {{cardResult.list.paginator.num_pages}}</a>
+                </li> 
+                {% if cardResult.list.has_next %}                               
+                <li class="page-item">
+                    <a class="page-link" href="?pIndex={{cardResult.list.next_page_number}}">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>    
+</div>
+{% endblock %}

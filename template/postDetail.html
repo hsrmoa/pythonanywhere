@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">  
+    <fieldset>            
+        <legend>포스트 상세정보</legend>        
+        <div class="form-group">
+            <img src="{{detail.imageUrl}}" class="img-thumbnail">
+        </div>
+        <div class="form-group">
+            <label for="postImg" class="form-label mt-4">작성자 - </label>                
+            {{detail.writer.user_id}}                
+        </div>
+        <div class="form-group">
+            <label for="postImg" class="form-label mt-4">작성일 - </label>                
+            {{detail.createDt}}                
+        </div>
+        <div class="form-group">
+            <label for="postTag" class="form-label mt-4">태그 - </label>                
+            {% for t in tags %}                
+                {{t.tag}}
+            {% endfor %}
+        </div>
+        <div class="d-grid gap-2">                                       
+            <a href="/" class="btn btn-lg btn-primary mt-4">이전화면</a>
+        </div>
+    </fieldset>
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">  
+    <fieldset>            
+        <form method ="POST">
+            {% csrf_token %}
+            <legend>포스트 작성</legend>            
+            <div class="form-group">
+                <label for="postCts" class="form-label mt-4">내용</label>                
+                {{form.postCts}}                
+            </div>
+            <div class="form-group">
+                <label for="postImg" class="form-label mt-4">이미지 주소</label>                
+                {{form.postImg}}                
+            </div>
+            <div class="form-group">
+                <label for="postTag" class="form-label mt-4">태그</label>                
+                {{form.postTag}}                
+            </div>
+            <div class="d-grid gap-2">                                       
+                <button type="submit" class="btn btn-lg btn-primary mt-4">포스트작성</button>
+            </div>
+        </form>   
+    </fieldset>
+</div>
+
+{% endblock %}
